@@ -18,7 +18,34 @@ function dados_loja() {
   if (dados.nome_loja == "") {
     throw new Error(`O campo nome da loja é obrigatório`);
   }
-  return "";
+  if(dados.logradouro == ""){
+    throw new Error(`O campo logradouro do endereço é obrigatório`);
+  }
+  let num = dados.numero + ""
+  if(dados.numero == 0){
+    num = "s/n";
+  }
+  if(dados.municipio == ""){
+    throw new Error(`O campo município do endereço é obrigatório`);
+  }
+  if(dados.estado == ""){
+    throw new Error(`O campo estado do endereço é obrigatório`);
+  }
+  if(dados.cnpj == ""){
+    throw new Error(`O campo CNPJ da loja é obrigatório`);
+  }
+  if(dados.inscricao_estadual == ""){
+    throw new Error(`O campo inscrição estadual da loja é obrigatório`);
+  }
+
+ let output = `${dados.nome_loja}\n`;
+  output += `${dados.logradouro}, ${num} ${dados.complemento}\n`;
+  output += `${dados.bairro} - ${dados.municipio} - ${dados.estado}\n`;
+  output += `CEP:${dados.cep} Tel ${dados.telefone}\n`;
+  output += `${dados.observacao}\n`;
+  output += `CNPJ: ${dados.cnpj}\n`;
+  output += `IE: ${dados.inscricao_estadual}\n`;
+  return output;
 }
 
 module.exports = {
